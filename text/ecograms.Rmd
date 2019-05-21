@@ -70,7 +70,7 @@ y <- dplyr::filter(ds, gram_canonical == "t-test") %>% dplyr::transmute(year = y
 glm_surpasses_ttest <- dplyr::inner_join(x, y) %>%
   dplyr::filter(total_glm > total_ttest) %>%
   dplyr::pull(year) %>% min()
-
+  
 mcmc_first_year <- ds %>%
   dplyr::filter(gram_canonical == "MCMC") %>%
   dplyr::pull(year) %>% min()
@@ -100,6 +100,7 @@ journals <-
   select(-Taxon, -Notes)
 
 journals$Journal[journals$Journal == "Ã‰coscience"] <- "Écoscience"
+
 
 # journals <- readr::read_csv(here::here("data/journal-filtering.csv")) %>%
 #   select(journal, group_vote, group_comments)
